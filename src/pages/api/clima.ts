@@ -9,10 +9,11 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   if (req.method === 'POST') {
-    const apiKey = '912ee1a2-1101-11ee-92e6-0242ac130002-912ee24c-1101-11ee-92e6-0242ac130002';
-    const { lat, long } = req.body; // Obtém o CEP passado no corpo da requisição
+    const apiKey = 'c3f6aa8d900ae85246a4b851c69daba6';
+    const { city } = req.body; // Obtém o CEP passado no corpo da requisição
     const params = 'windSpeed';
-    fetch(`https://api.stormglass.io/v2/weather/point?lat=${lat}&lng=${long}&params=${params}`, {
+    const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}&lang=pt_br`;
+    fetch(apiWeatherURL, {
         headers: {
           'Authorization': `Bearer ${apiKey}`
         }
